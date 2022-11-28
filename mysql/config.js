@@ -3,8 +3,8 @@ const mysql = require('mysql');
 module.exports = {
   getCon: () => mysql.createConnection({
     host: "localhost",
-    user: "youruser",
-    password: "yourpassword",
+    user: "root",
+    password: "",
     database: "restaurants"
   }),
   functions: mysql
