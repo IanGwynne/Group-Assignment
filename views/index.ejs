@@ -24,21 +24,32 @@
       <th>City</th>
       <th>Cuisine Type</th>
     </tr>
+    <% for(let i = 0; i < 5; i++) { %>
     <tr> 
-        <td> Insert Names </td>
-        <td> Insert Countries </td>
-        <td> Insert Cities </td>
-        <td> Insert Cuisine types</td>
-
-      
+        <td> <%= results[i].name %> </td>
+        <td> <%= results[i].country %> </td>
+        <td> <%= results[i].city %> </td>
+        <td> <%= results[i].cuisine %></td>
     </tr>
+    <% } %>
 </table>
 </p>
 <p>
   <button id="previous"> Previous</button>
   Display Info Here
-  <!--FUnction To Display Querry Result Number.?-->
+  <!--Need to Code Dropdown funciton that stores the number-->
   <button id="next">Next>></button>
 </p>
+<p>
+  Rows to Display:
+  <select id="tableList" value = 5>
+    <option>5</option>
+    <option>10</option>
+    <option>25</option>
+    <option>50</option>
+</p>
+<script type="text/javascript">
+
+</script>
   </body>
 </html>
