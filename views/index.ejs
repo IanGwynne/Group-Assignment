@@ -5,7 +5,7 @@
   </head>
   <body>
     Hello!
-    <select id="filterList">
+    <select id="filterList" onchange="dropBoxChange">
       <option>-- No Filter -- </option>
       <option>Country</option>
       <option>City</option>
@@ -17,22 +17,19 @@
   <button id="apply">Apply Filter</button>
   <button id="clear">Clear Filter</button>
   <p> 
-    <table> 
-    <tr>
-      <th>Name</th>
-      <th>Country</th>
-      <th>City</th>
-      <th>Cuisine Type</th>
-    </tr>
-    <% for(let i = 0; i < 5; i++) { %>
-    <tr> 
-        <td> <%= results[i].name %> </td>
-        <td> <%= results[i].country %> </td>
-        <td> <%= results[i].city %> </td>
-        <td> <%= results[i].cuisine %></td>
-    </tr>
-    <% } %>
-</table>
+    <table>
+      <thead>
+          <tr>
+              <th>Name</th>
+              <th>Country</th>
+              <th>City </th>
+              <th>Cuisine Type </th>
+          </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+  </table>
 </p>
 <p>
   <button id="previous"> Previous</button>
@@ -43,13 +40,58 @@
 <p>
   Rows to Display:
   <select id="tableList" value = 5>
-    <option>5</option>
-    <option>10</option>
-    <option>25</option>
-    <option>50</option>
+    <option value="5">5</option>
+    <option value="10">10</option>
+    <option value="25">25</option>
+    <option value="50">50</option>
 </p>
-<script type="text/javascript">
-
-</script>
   </body>
+  <script type="text/javascript">
+    let table = document.querySelector('table tbody');
+    let pageNumber = 0;
+    let take = 3;
+    //Need to figure out how to do this with ejs i guess.
+    function getData() {
+        fetch(`/users?page=${pageNumber}&take=${take}`)
+        .then(response => response.json())
+        .then(data => {
+            table.innerHTML = "";
+
+            for(let i = 0; i < data.length; i++) {
+                table.innerHTML += `
+                    <tr>
+                        <td>${data[i].name}</td>
+                        <td>${data[i].country}</td>
+                        <td>${data[i].city}</td>
+                        <td>${data[i].cuisine_type}</td>
+                    </tr>
+                `;
+            }
+        });
+    }
+
+    getData();
+
+    document.querySelector("#previous").addEventListener("click", event => {
+        // this needs to decrement the page number and re-fetch the data
+        pageNumber--;
+        getData();
+    });
+
+    document.querySelector("#next").addEventListener("click", event => {
+        // this needs to increment the page number and re-fetch the data
+        pageNumber++;
+        getData();
+    });
+
+    document.querySelector("#tableList").addEventListener("change", event => {
+        // reset pageNumber to 0 to make it easier to work with
+        // this needs to update the take and re-fetch the data
+    pageNumber = 0;
+    let perPage = document.querySelector('#tableList option:checked').value
+    take = perPage;
+
+    getData();
+    });
+</script>
 </html>
