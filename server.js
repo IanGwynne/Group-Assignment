@@ -11,9 +11,12 @@ app.get("/", (request, response) => {
 
  con.connect();
   let query 
-  = `SELECT * FROM restaurants `;
+  = `SELECT * FROM restaurants LIMIT ?,? `;
+  let take = parseInt(request.query.take);
+    let skip = parseInt(request.query.page) * take;
+
 //‘${request.query.filter}’` Maybe?
-  let safeQuery = mysql.format(query,);
+  let safeQuery = mysql.format(query, [skip, take]);
 
   con.query(safeQuery, (error, result) => {
       response.render('index.ejs',
