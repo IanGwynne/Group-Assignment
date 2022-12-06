@@ -10,11 +10,11 @@
   </head>
   <body>
     Hello!
-    <select id="filterList" onchange="dropBoxChange">
-      <option>-- No Filter -- </option>
-      <option>Country</option>
-      <option>City</option>
-      <option>Cuisine</option>
+    <select id="filterList" onchange="dropBoxChange()">
+      <option value="1">-- No Filter -- </option>
+      <option value="2">Country</option>
+      <option value="3">City</option>
+      <option value="4">Cuisine</option>
   </select>
   <select id="List"> 
     <option>-- No Filter -- </option>
@@ -51,11 +51,29 @@
     <option value="50">50</option>
 </p>
   </body>
+  <script type="text/javascript"></script>
   <script type="text/javascript">
     let table = document.querySelector('table tbody');
     let pageNumber = 0;
     let take = 3;
     //Need to figure out how to do this with ejs i guess.
+    function dropBoxChange()
+    {
+      let checkedFilter = 
+      document.querySelector('#filterList option:checked');
+      let List = document.getElementById('List');
+      List.innerHTML="";
+      <% for(let i = 0; i < result.length; i++)   { %>
+          if(checkedFilter.value=="2")
+          List.innerHTML+=`<option value><%=result[i].country%></option>`;
+          else if(checkedFilter.value=="3")
+          List.innerHTML+=`<option><%=result[i].city%></option>`;
+          else if(checkedFilter.value=="4")
+          List.innerHTML+=`<option><%=result[i].cuisine%></option>`;
+          <% } %> 
+          console.log(checkedFilter.value)
+     }
+
     function getData() {
         fetch(`/users?page=${pageNumber}&take=${take}`)
         .then(response => response.json())
