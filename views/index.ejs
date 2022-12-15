@@ -63,14 +63,14 @@
       document.querySelector('#filterList option:checked');
       let List = document.getElementById('List');
       List.innerHTML="";
-      <% for(let i = 0; i < result.length; i++)   { %>
+      '<% for(let i = 0; i < result.length; i++)   { %>'
           if(checkedFilter.value=="2")
           List.innerHTML+=`<option value><%=result[i].country%></option>`;
           else if(checkedFilter.value=="3")
           List.innerHTML+=`<option><%=result[i].city%></option>`;
           else if(checkedFilter.value=="4")
           List.innerHTML+=`<option><%=result[i].cuisine%></option>`;
-          <% } %> 
+          '<% } %>' 
           console.log(checkedFilter.value)
      }
 
