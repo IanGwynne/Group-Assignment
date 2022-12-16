@@ -5,11 +5,26 @@
     <style type="text/css">
       table, tr, td {
           border: 1px solid black;
+          background-color: aliceblue;
+      }
+      tr, td{
+        padding-left: 2em;
+        padding-right: 2em;
+      }
+      body {
+        background-color: rgb(205, 205, 255);
+      }
+      .flex
+      {
+        display:flex;
+        flex-direction: row;
+        width: 50%;
+        margin: auto;
       }
   </style>
   </head>
   <body>
-    Hello!
+    <div class = "flex">
     <select id="filterList" onchange="dropBoxChange()">
       <option value="1">-- No Filter -- </option>
       <option value="2">Country</option>
@@ -21,6 +36,8 @@
   </select>
   <button id="apply">Apply Filter</button>
   <button id="clear">Clear Filter</button>
+    </div>
+    <div class = "flex">
   <p> 
     <table>
       <thead>
@@ -36,6 +53,8 @@
       </tbody>
   </table>
 </p>
+</div>
+<div class = "flex">
 <p>
   <button id="previous"> Previous</button>
   Display Info Here
@@ -50,6 +69,7 @@
     <option value="25">25</option>
     <option value="50">50</option>
 </p>
+</div>
   </body>
   <script type="text/javascript"></script>
   <script type="text/javascript">
@@ -117,5 +137,6 @@
 
     getData();
     });
+    
 </script>
 </html>
