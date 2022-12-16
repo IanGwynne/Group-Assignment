@@ -1,7 +1,24 @@
 const mysql = require("./config.js");
 
+function getFromRestaurants()
+{
+    let query = `SELECT * FROM restaurants `;
+    let safeQuery = mysql.functions.format(query)
+
+    return querySql(safeQuery);
+}
+
+function getTableInfo(criteria)
+{
+    let query = `SELECT name, street, city, country FROM restaurants
+     ORDER BY street LIMIT ?,?`;
+    let safeQuery = mysql.functions.format(query, [criteria.skip, criteria.take]);
+    return querySql(safeQuery);
+}
 
 module.exports = {
+    "getFromRestaurants": getFromRestaurants,
+    "getTableInfo": getTableInfo
 };
 
 
