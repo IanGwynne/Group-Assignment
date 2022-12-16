@@ -86,7 +86,7 @@
                         <td>${data[i].name}</td>
                         <td>${data[i].country}</td>
                         <td>${data[i].city}</td>
-                        <td>${data[i].cuisine_type}</td>
+                        <td>${data[i].cuisine}</td>
                     </tr>
                 `;
             }
@@ -97,7 +97,8 @@
     
     document.querySelector("#previous").addEventListener("click", event => {
         // this needs to decrement the page number and re-fetch the data
-        pageNumber--;
+        if(pageNumber != 0)
+          pageNumber--;
         getData();
     });
 
