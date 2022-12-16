@@ -34,7 +34,7 @@
   <select id="List"> 
     <option>-- No Filter -- </option>
   </select>
-  <button id="apply">Apply Filter</button>
+  <button id="apply" onclick="applyFilter()"> Apply Filter </button>
   <button id="clear">Clear Filter</button>
     </div>
     <div class = "flex">
@@ -57,7 +57,7 @@
 <div class = "flex">
 <p>
   <button id="previous"> Previous</button>
-  Display Info Here
+  <label id="countResults">Display Info Here</label>
   <!--Need to Code Dropdown funciton that stores the number-->
   <button id="next">Next>></button>
 </p>
@@ -111,6 +111,11 @@
                 `;
             }
         });
+    }
+
+    function applyFilter()
+    {
+
     }
 
     getData();
