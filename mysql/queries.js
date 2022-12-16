@@ -11,7 +11,7 @@ function getFromRestaurants()
 function getTableInfo(criteria)
 {
     let query = `SELECT name, city, country, cuisine FROM restaurants
-     ORDER BY street LIMIT ?,?`;
+     ORDER BY name LIMIT ?,?`;
     let safeQuery = mysql.functions.format(query, [criteria.skip, criteria.take]);
     return querySql(safeQuery);
 }
