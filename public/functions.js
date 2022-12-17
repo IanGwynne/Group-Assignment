@@ -33,7 +33,7 @@
             table.innerHTML = "";
             console.log(data[0].name);
             let pages = document.getElementById("countResults");
-            pages.innerHTML = "Displaying " + (data.length*(pageNumber+1) - 4)  + " - " +  data.length*(pageNumber+1);
+            pages.innerHTML = "Displaying " + (data.length*(pageNumber+1) - (take - 1))  + " - " +  data.length*(pageNumber+1);
             for(let i = 0; i < data.length; i++) {
                 console.log(data.length);
                 table.innerHTML += `
