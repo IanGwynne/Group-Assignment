@@ -48,7 +48,7 @@
               <th>Cuisine Type </th>
           </tr>
       </thead>
-      <tbody>
+      <tbody id="bodyTable">
 
       </tbody>
   </table>
@@ -115,7 +115,17 @@
 
     function applyFilter()
     {
+      let checkedFilter = 
+      document.querySelector('#filterList option:checked');
+      let listFilter = document.querySelector('#List option:checked');
 
+      if (checkedFilter.value == "1" || listFilter.value == "")
+        alert("No filter selected"); //dont apply filter if there is none
+      else 
+      {
+        alert("valid filter");
+        //code that will apply the filter here
+      }
     }
 
     getData();
