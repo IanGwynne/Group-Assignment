@@ -29,9 +29,19 @@ function getTableInfo(criteria)
     return querySql(safeQuery);
 }
 
+function getTableInfoFiltered(criteria)
+{
+    let query = `SELECT name, city, country, cuisine FROM restaurants
+     WHERE cuisine = ? OR city = ? OR country = ?
+     ORDER BY name LIMIT ?,?`;
+    let safeQuery = mysql.functions.format(query, [criteria.secondFilter, criteria.secondFilter, criteria.secondFilter,criteria.skip, criteria.take]);
+    return querySql(safeQuery);
+}
+
 module.exports = {
     "getFromRestaurants": getFromRestaurants,
-    "getTableInfo": getTableInfo
+    "getTableInfo": getTableInfo,
+    "getTableInfoFiltered": getTableInfoFiltered
 };
 
 
