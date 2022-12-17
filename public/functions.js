@@ -33,7 +33,7 @@
             table.innerHTML = "";
             console.log(data[0].name);
             let pages = document.getElementById("countResults");
-            pages.innerHTML = "Displaying " + (data.length*(pageNumber+1) - 4)  + " - " +  data.length*(pageNumber+1);
+            pages.innerHTML = "Displaying " + (data.length*(pageNumber+1) - (take - 1))  + " - " +  data.length*(pageNumber+1);
             for(let i = 0; i < data.length; i++) {
                 console.log(data.length);
                 table.innerHTML += `
@@ -87,7 +87,12 @@
     });
     
     document.querySelector("#clear").addEventListener("click", event => {
-        firstBox = "none";
+    firstBox = "none";
+    List.innerHTML=`<option value = "None">-- No Filter -- </option>`;
+    filterList.innerHTML=`<option value="None">-- No Filter --</option>`;
+    filterList.innerHTML+=`<option value="Country">Country</option>`;
+    filterList.innerHTML+=`<option value="City">City</option>`;
+    filterList.innerHTML+=`<option value="Cuisine">Cuisine</option>`;
     getData();
     document.getElementById("clear").disabled = true;
     });
