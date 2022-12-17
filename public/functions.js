@@ -12,17 +12,17 @@
       fetch(`/all?firstBox=${firstBox}`)
       .then(response => response.json())
       .then(result => {
-
-          for(let i = 0; i < result.length; i++)   {
-              if(checkedFilter.value=="Country")
-              List.innerHTML+=`<option value="${result[i].country}">${result[i].country}</option>`;
-              else if(checkedFilter.value=="City")
-              List.innerHTML+=`<option>${result[i].city}</option>`;
-              else if(checkedFilter.value=="Cuisine")
-              List.innerHTML+=`<option>${result[i].cuisine}</option>`;
-              else
-              List.innerHTML=`<option value = "None">-- No Filter -- </option>`;
+            for(let i = 0; i < result.length; i++)   {
+                if(checkedFilter.value=="Country")
+                List.innerHTML+=`<option value="${result[i].country}">${result[i].country}</option>`;
+                else if(checkedFilter.value=="City")
+                List.innerHTML+=`<option>${result[i].city}</option>`;
+                else if(checkedFilter.value=="Cuisine")
+                List.innerHTML+=`<option>${result[i].cuisine}</option>`;
+                else
+                List.innerHTML=`<option value = "None">-- No Filter -- </option>`;
             }
+
         })
     }
 
@@ -30,23 +30,31 @@
         fetch(`/users?page=${pageNumber}&take=${take}&firstBox=${firstBox}&secondBox=${secondBox}`)
         .then(response => response.json())
         .then(data => {
-            table.innerHTML = "";
-            console.log(data[0].name);
-            let pages = document.getElementById("countResults");
-            if(data.length*(pageNumber+1) >= take)
-            pages.innerHTML = "Displaying " + (data.length*(pageNumber+1) - (take - 1))  + " - " +  data.length*(pageNumber+1);
-            else
-            pages.innerHTML = "Displaying 1 - " +  data.length*(pageNumber+1);
-            for(let i = 0; i < data.length; i++) {
-                console.log(data.length);
-                table.innerHTML += `
+            if(data.length > 0)
+            {
+
+                table.innerHTML = "";
+                console.log(data[0].name);
+                let pages = document.getElementById("countResults");
+                if(data.length*(pageNumber+1) >= take)
+                pages.innerHTML = "Displaying " + (data.length*(pageNumber+1) - (take - 1))  + " - " +  data.length*(pageNumber+1);
+                else
+                pages.innerHTML = "Displaying 1 - " +  data.length*(pageNumber+1);
+                for(let i = 0; i < data.length; i++) {
+                    console.log(data.length);
+                    table.innerHTML += `
                     <tr>
-                        <td>${data[i].name}</td>
-                        <td>${data[i].country}</td>
-                        <td>${data[i].city}</td>
-                        <td>${data[i].cuisine}</td>
+                    <td>${data[i].name}</td>
+                    <td>${data[i].country}</td>
+                    <td>${data[i].city}</td>
+                    <td>${data[i].cuisine}</td>
                     </tr>
-                `;
+                    `;
+                }
+            }
+            else
+            {
+                pageNumber--;
             }
         });
     }
