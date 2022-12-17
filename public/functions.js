@@ -35,7 +35,10 @@
         .then(data => {
             table.innerHTML = "";
             console.log(data[0].name);
+            let pages = document.getElementById("countResults");
+            pages.innerHTML = "Displaying " + (data.length*(pageNumber+1) - 4)  + " - " +  data.length*(pageNumber+1);
             for(let i = 0; i < data.length; i++) {
+                console.log(data.length);
                 table.innerHTML += `
                     <tr>
                         <td>${data[i].name}</td>
@@ -73,6 +76,7 @@
     });
 
     document.querySelector('#apply').addEventListener("click", event => {
+        pageNumber = 0;
       // needs to grab the currently selected thing from the second filter box
       //firstBox = document.querySelector('#filterList option:checked').value;
       secondBox = document.querySelector('#List option:checked').value;
