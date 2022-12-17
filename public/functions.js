@@ -90,7 +90,12 @@
     });
     
     document.querySelector("#clear").addEventListener("click", event => {
-        firstBox = "none";
+    firstBox = "none";
+    List.innerHTML=`<option value = "None">-- No Filter -- </option>`;
+    filterList.innerHTML=`<option value="None">-- No Filter --</option>`;
+    filterList.innerHTML+=`<option value="Country">Country</option>`;
+    filterList.innerHTML+=`<option value="City">City</option>`;
+    filterList.innerHTML+=`<option value="Cuisine">Cuisine</option>`;
     getData();
     document.getElementById("clear").disabled = true;
     });
