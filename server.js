@@ -43,7 +43,7 @@ app.get("/users", (request, response) => {
   {
     queries.getTableInfo(
       {
-        take: 2,
+        take: take,
         skip: skip
       }).then(tableResult => {
         response.json(tableResult);

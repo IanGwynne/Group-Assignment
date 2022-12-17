@@ -1,8 +1,8 @@
-const { response } = require("express");
+
 
     let table = document.querySelector('table tbody');
     let pageNumber = 0;
-    let take = 3;
+    let take = 5;
     let firstBox="none",secondBox="0";
     //Need to figure out how to do this with ejs i guess.
     
@@ -17,11 +17,13 @@ const { response } = require("express");
 
           for(let i = 0; i < result.length; i++)   {
               if(checkedFilter.value=="Country")
-              List.innerHTML+=`<option value="result[i].country">result[i].country</option>`;
+              List.innerHTML+=`<option value="${result[i].country}">${result[i].country}</option>`;
               else if(checkedFilter.value=="City")
-              List.innerHTML+=`<option>result[i].city</option>`;
+              List.innerHTML+=`<option>${result[i].city}</option>`;
               else if(checkedFilter.value=="Cuisine")
-              List.innerHTML+=`<option>result[i].cuisine</option>`;
+              List.innerHTML+=`<option>${result[i].cuisine}</option>`;
+              else
+              List.innerHTML=`<option value = "None">-- No Filter -- </option>`;
             }
         })
     }
@@ -44,8 +46,7 @@ const { response } = require("express");
             }
         });
     }
-    alert("Hello");
-    //getData();
+    getData();
     dropBoxChange();
     document.querySelector("#previous").addEventListener("click", event => {
         // this needs to decrement the page number and re-fetch the data
