@@ -81,6 +81,7 @@
       //firstBox = document.querySelector('#filterList option:checked').value;
       secondBox = document.querySelector('#List option:checked').value;
       getData();
+      document.getElementById("clear").disabled = false;
     })
 
     document.querySelector("#filterList").addEventListener("change", event => {
@@ -88,3 +89,8 @@
         dropBoxChange();
     });
     
+    document.querySelector("#clear").addEventListener("click", event => {
+        firstBox = "none";
+    getData();
+    document.getElementById("clear").disabled = true;
+    });
