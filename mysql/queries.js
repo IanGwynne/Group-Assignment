@@ -1,16 +1,29 @@
 const mysql = require("./config.js");
 
-function getFromRestaurants()
-{
-    let query = `SELECT * FROM restaurants`;
 
-    let safeQuery = mysql.functions.format(query)
+function getAllFromRestaurants()
+{
+    let query = `SELECT DISTINCT * FROM restaurants`;
+
+    let safeQuery = mysql.functions.format(query);
+    return querySql(safeQuery);
+}
+
+function getFromRestaurants(criteria)
+{
+    let query = `SELECT DISTINCT cuisine FROM restaurants ORDER BY cuisine`;
+    if(criteria.filter == 'City') 
+    query = `SELECT DISTINCT city FROM restaurants ORDER BY city`;
+    else if(criteria.filter == 'Country')
+    query = `SELECT DISTINCT country FROM restaurants ORDER BY country`;
+
+    let safeQuery = mysql.functions.format(query);
     return querySql(safeQuery);
 }
 
 function getTableInfo(criteria)
 {
-    let query = `SELECT name, city, country, cuisine FROM restaurants
+    let query = `SELECT DISTINCT name, city, country, cuisine FROM restaurants
      ORDER BY name LIMIT ?,?`;
 /*
     let checkedFilter = 4 //change value to whichever option is chosen by user (city country or quisine)
@@ -31,7 +44,7 @@ function getTableInfo(criteria)
 
 function getTableInfoFiltered(criteria)
 {
-    let query = `SELECT name, city, country, cuisine FROM restaurants
+    let query = `SELECT DISTINCT name, city, country, cuisine FROM restaurants
      WHERE cuisine = ? OR city = ? OR country = ?
      ORDER BY name LIMIT ?,?`;
     let safeQuery = mysql.functions.format(query, [criteria.secondFilter, criteria.secondFilter, criteria.secondFilter,criteria.skip, criteria.take]);
@@ -39,9 +52,10 @@ function getTableInfoFiltered(criteria)
 }
 
 module.exports = {
-    "getFromRestaurants": getFromRestaurants,
-    "getTableInfo": getTableInfo,
-    "getTableInfoFiltered": getTableInfoFiltered
+    getAllFromRestaurants: getAllFromRestaurants,
+    getFromRestaurants: getFromRestaurants,
+    getTableInfo: getTableInfo,
+    getTableInfoFiltered: getTableInfoFiltered
 };
 
 

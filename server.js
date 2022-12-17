@@ -14,9 +14,23 @@ app.get("/", (request, response) => {
 });
 
 app.get("/all", (request, response) => {
-  queries.getFromRestaurants().then(result => {
-    response.json(result);
-  })
+  let filter = request.query.firstBox;
+  if(filter == "none")
+  {
+    queries.getAllFromRestaurants().then(result => {
+      response.json(result);
+    })
+  }
+  else
+  {
+    console.log(filter);
+    queries.getFromRestaurants(
+      {
+        filter: filter
+      }).then(result => {
+        response.json(result);
+      })
+  }
 });
 
 app.get("/users", (request, response) => {
@@ -25,7 +39,7 @@ app.get("/users", (request, response) => {
   let skip = parseInt(request.query.page) * take;
   let firstFilter = request.query.firstBox;
   let secondFilter = request.query.secondBox;
-  console.log(secondFilter);
+  
   if(firstFilter != "none")
   {
     queries.getTableInfoFiltered(

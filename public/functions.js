@@ -12,7 +12,8 @@
       document.querySelector('#filterList option:checked');
       let List = document.getElementById('List');
       List.innerHTML="";
-      fetch(`/all`).then(response => response.json())
+      fetch(`/all?firstBox=${firstBox}`)
+      .then(response => response.json())
       .then(result => {
 
           for(let i = 0; i < result.length; i++)   {
@@ -73,12 +74,13 @@
 
     document.querySelector('#apply').addEventListener("click", event => {
       // needs to grab the currently selected thing from the second filter box
-      firstBox = document.querySelector('#filterList option:checked').value;
+      //firstBox = document.querySelector('#filterList option:checked').value;
       secondBox = document.querySelector('#List option:checked').value;
       getData();
     })
 
     document.querySelector("#filterList").addEventListener("change", event => {
+        firstBox = document.querySelector('#filterList option:checked').value;
         dropBoxChange();
     });
     
