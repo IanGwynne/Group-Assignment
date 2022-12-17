@@ -35,7 +35,7 @@
     <option>-- No Filter -- </option>
   </select>
   <button id="apply" onclick="applyFilter()"> Apply Filter </button>
-  <button id="clear">Clear Filter</button>
+  <button id="clear" disabled onclick="clearFilter()">Clear Filter</button>
     </div>
     <div class = "flex">
   <p> 
@@ -119,13 +119,19 @@
       document.querySelector('#filterList option:checked');
       let listFilter = document.querySelector('#List option:checked');
 
-      if (checkedFilter.value == "1" || listFilter.value == "")
-        alert("No filter selected"); //dont apply filter if there is none
+      if (checkedFilter.value == "1" || listFilter.value == null)
+        alert("No filter selected");
       else 
       {
-        alert("valid filter");
+        document.getElementById("clear").disabled = false;
         //code that will apply the filter here
       }
+    }
+    function clearFilter()
+    {
+      document.getElementById("clear").disabled = true;
+      document.getElementById("filterList").value = 1;
+      document.getElementById("List").value = 1;
     }
 
     getData();

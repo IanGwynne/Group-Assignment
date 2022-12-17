@@ -12,7 +12,7 @@ function getTableInfo(criteria)
 {
     let query = `SELECT name, city, country, cuisine FROM restaurants
      ORDER BY name LIMIT ?,?`;
-
+/*
     let checkedFilter = 4 //change value to whichever option is chosen by user (city country or quisine)
 
    if (checkedFilter==2)
@@ -24,7 +24,7 @@ function getTableInfo(criteria)
    else if (checkedFilter==4)
        query = `SELECT name, city, country, cuisine FROM restaurants WHERE cuisine = 'Italian'
        ORDER BY name LIMIT ?,?`; // change hardcoded value of Italian to what the user chose from 2nd dropbox
-
+*/
     let safeQuery = mysql.functions.format(query, [criteria.skip, criteria.take]);
     return querySql(safeQuery);
 }
