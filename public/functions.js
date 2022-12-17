@@ -69,10 +69,16 @@
     });
 
     document.querySelector('#apply').addEventListener("click", event => {
+        
         pageNumber = 0;
-      secondBox = document.querySelector('#List option:checked').value;
-      getData();
-      document.getElementById("clear").disabled = false;
+        if(firstBox == "none")
+        alert("Must select a filter");
+        else
+        {
+        secondBox = document.querySelector('#List option:checked').value;
+        getData();
+        document.getElementById("clear").disabled = false;
+        }
     })
 
     document.querySelector("#filterList").addEventListener("change", event => {

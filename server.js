@@ -49,7 +49,6 @@ app.get("/users", (request, response) => {
       }).then(tableResult => {
         response.json(tableResult);
       })
-
   } 
   else
   {
