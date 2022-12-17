@@ -8,9 +8,7 @@ app.set('view engine', 'ejs');
 app.listen(3000);
 
 app.get("/", (request, response) => {
-  //queries.getFromRestaurants().then(result => {
     response.render('index')
-  //})
 });
 
 app.get("/all", (request, response) => {
